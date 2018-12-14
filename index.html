@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--Personnal css-->
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/range.css">
+  
+</head>
+
+<body>
+  <div class="card-panel deep-purple darken-2 lighten-2 center" id="title">
+    <button class="deep-purple darken-3 white-text btn btn-flat btn-large" id="home">
+      <i class="material-icons right" >home</i>
+      BikeApp
+    </button>
+  </div>
+  <div id="container">
+    <!--     Home Page  -->   
+    <div id="homeContent">
+      <button class="deep-purple darken-1 btn btn-large" id="newtrip">Nouveau trajet</button>
+      <button class="deep-purple darken-1 btn btn-large" id="mytrips">Mes trajets</button>
+      <button class="deep-purple darken-1 btn btn-large" id="profil">Mon profil</button>
+      <button class="deep-purple darken-1 btn btn-large" id="history">Historique</button>
+    </div>
+    <!-- My Trips List -->  
+    <div id="mytripsContent">
+      <div class="row">
+        <div class="row trip">
+          <div class="col s12 m12">
+            <div class="card">
+              <span class="card-title">Trajet</span>
+              <div class="card-content trips">
+                <p>Départ : Le Mans</p>
+                <p>Arrivée : Rennes</p>
+                <button class="deep-purple darken-1 btn btn-flat" onclick="startMap()">
+                  Démarrer
+                  <i class="material-icons right">directions</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row trip">
+          <div class="col s12 m12">
+            <div class="card">
+              <span class="card-title">Trajet</span>
+              <div class="card-content trips">
+                <p>Départ : Le Mans</p>
+                <p>Arrivée : Rennes</p>
+                <button class="deep-purple darken-1 white-text btn btn-flat" onclick="startMap()">
+                  Démarrer
+                  <i class="material-icons right orange600">directions</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div> 
+        
+        <div class="row trip">
+          <div class="col s12 m12">
+            <div class="card">
+              <span class="card-title">Trajet</span>
+              <div class="card-content trips">
+                <p>Départ : Le Mans</p>
+                <p>Arrivée : Rennes</p>
+                <button class="deep-purple darken-1 btn btn-flat" onclick="startMap()">
+                  Démarrer
+                  <i class="material-icons right">directions</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>  
+        
+      </div>
+    </div>
+    
+    <!-- Create new trip -->  
+    <div id="newtripContent">
+      <div class="row">
+        <div class="card-panel deep-purple lighten lighten-2 center col s12">Nouveau Trajet</div>
+        <div class="input-field col s8">
+          <input id="newArrival" type="text">
+          <label for="newArrival">Départ</label>
+        </div>
+        <div class="input-field col s8" id="newStepContent" style="display: none">
+          <input id="newStep" type="text">
+          <label for="newStep">Etape</label>
+        </div>
+        <div class="input-field col s8">
+          <input id="newArrival" type="text">
+          <label for="newArrival">Arrivée</label>
+        </div>
+        <button class="deep-purple darken-1 btn btn-small" onclick="document.getElementById('newStepContent').style.display = 'inline'">Ajouter une étape</button>
+        <p id="checkboxProfil">
+          <label>
+            <input type="checkbox" id="myProfil" onclick="disableProfil()" unchecked/>
+            <span>Utiliser mon profil</span>
+          </label>
+        </p>
+        
+        <div id="bikeType">
+          <div class="card-panel deep-purple lighten lighten-2 text-centered col s8" id="bikeTypeTitle">Type de vélo</div>
+          <div class="col s12" id="bikeTypeForm">
+            <p>
+              <label>
+                <input type="radio" name="bikeType" class="bikeType"/>
+                <span>Ville</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="radio" name="bikeType" class="bikeType"/>
+                <span>VTT</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="radio" name="bikeType" class="bikeType"/>
+                <span>Electrique</span>
+              </label>
+            </p>
+          </div>
+        </div>
+        
+        <div id="profiltype">
+          <div class="card-panel deep-purple lighten lighten-2 text-centered col s8" id="profilTypeTitle">Profil</div>
+          <form class = "col s8" id="rangeProfilForm">
+            <div class = "row">
+                
+                <p class="range-field">
+                    <div>
+                        <div class="col s6">Plaisir</div>
+                        <div class="col s6" style="text-align: right;">Performance</div>
+                      </div>
+                    <input type="range" id="rangeProfil" min="0" max="10" />
+                  </p>
+
+
+            </div>            
+          </form>       
+        </div>
+        <button class="deep-purple darken-1 btn btn-small" id="startNewTrip" onclick="startMap()">Démarrer 
+          <i class="material-icons cyan-text text-darken-4 right">directions</i>
+        </button>
+        <button class="deep-purple darken-1 btn btn-small" id="addParams" onclick="addNewParams()">Ajouter des <br> paramètres 
+        </button>
+      </div>
+    </div>
+    
+    <!-- Add params -->
+    <div id="addParamsPage" style="display: none;">
+      
+      <div class="row" style="margin-left: 40px;">
+        <form action="#">
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Equipements lumineux</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Garde boue</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" onclick="displayRangeWeightChild()" id="isChild"/>
+              <span>Siege enfant</span>
+            </label>
+          </p>
+          <form action="">
+            <p id="rangeWeightChild" style="max-width: 300px; display: none">
+              
+              <input type="range" min="0" max="20">
+              <span>Poids</span>
+              
+            </p>
+          </form>
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Garde boue</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Enfant à vélo</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Sportif</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Anti-vol</span>
+            </label>
+          </p>
+        </form>
+      </div>
+      <button class="deep-purple darken-1 btn btn-small" id="startNewTrip" onclick="startMap()">Démarrer 
+        <i class="material-icons cyan-text text-darken-4 right">directions</i>
+      </button>
+    </div>
+    <!-- Profil Page -->  
+    <div id="profilContent">
+      <div class="row">
+        <div class="card-panel deep-purple lighten lighten-2 center col s12">Mon profil</div>
+        
+        
+        <div id="bikeType">
+          <div class="card-panel deep-purple lighten lighten-2 text-centered col s8" id="bikeTypeTitle">Type de vélo</div>
+          <div class="col s12" id="bikeTypeForm">
+            <p>
+              <label>
+                <input type="radio" name="bikeType" class="bikeType"/>
+                <span>Ville</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="radio" name="bikeType" class="bikeType"/>
+                <span>VTT</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="radio" name="bikeType" class="bikeType"/>
+                <span>Electrique</span>
+              </label>
+            </p>
+          </div>
+        </div>
+        <div id="profiltype">
+          <div class="card-panel deep-purple lighten lighten-2 text-centered col s8" id="profilTypeTitle">Profil</div>
+          <form class = "col s8" id="rangeProfilForm">
+            <div class = "row">
+              <p class = "range-field">
+                <div>
+                  <div class="col s6">Plaisir</div>
+                  <div class="col s6" style="text-align: right;">Performance</div>
+                </div>
+                <input type = "range" min = "0" max = "10" id="rangeProfil"/>
+              </p>
+            </div>            
+          </form>       
+        </div>
+        
+        <div id="buttonProfil">
+          <button class="deep-purple darken-1 btn btn-small"  id="homeSave" style="margin-left: 50px;">Sauvegarder
+          </button>
+          <button class="deep-purple darken-1 btn btn-small" id="stats" onclick="statsDisplay()">Stats
+          </button>
+        </div>
+      </div> 
+    </div>
+    
+    <!-- Stats Page -->
+    <div id="statsContent">
+        <button class="deep-purple darken-1 btn btn-small" id="backToProfil">Profil
+          </button>
+      <div>
+          <img src="img/stats.png" alt="stats not found">
+      </div>
+      
+    </div>
+    
+    <!-- History Page -->  
+    <div id="historyContent">
+      <div class="row">
+        <div class="row trip">
+          <div class="col s12 m12">
+            <div class="card">
+              <span class="card-title">Trajet</span>
+              <div class="card-content trips">
+                <p>Départ : Le Mans</p>
+                <p>Arrivée : Rennes</p>
+                <button class="deep-purple darken-1 btn btn-flat" onclick="startMap()">
+                  Démarrer
+                  <i class="material-icons right">directions</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row trip">
+          <div class="col s12 m12">
+            <div class="card">
+              <span class="card-title">Trajet</span>
+              <div class="card-content trips">
+                <p>Départ : Le Mans</p>
+                <p>Arrivée : Laval</p>
+                <button class="deep-purple darken-1 btn btn-flat" onclick="startMap()">
+                  Démarrer
+                  <i class="material-icons right">directions</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div> 
+        
+        <div class="row trip">
+          <div class="col s12 m12">
+            <div class="card">
+              <span class="card-title">Trajet</span>
+              <div class="card-content trips">
+                <p>Départ : rue de machin </p>
+                <p>Arrivée : rue bidule</p>
+                <button class="deep-purple darken-1 btn btn-flat" onclick="startMap()">
+                  Démarrer
+                  <i class="material-icons right">directions</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+    
+    <!-- Map Page-->
+    <div id="map" class="map" style="display: none;">
+      <img src="img/map.png" alt="map not found" style="max-height: 640px;">
+    </div>
+  </div>
+  
+  
+  
+  <!--JavaScript at end of body for optimized loading-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/utils.js"></script>
+</body>
+</html>
